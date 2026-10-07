@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-base-950 text-slate-200 antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04";
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.08), transparent),
+      linear-gradient(rgba(255, 255, 255, 0.016) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.016) 1px, transparent 1px);
+    background-size: auto, 44px 44px, 44px 44px;
+    min-height: 100vh;
+  }
+
+  * {
+    @apply border-base-700;
+  }
+
+  ::selection {
+    background: rgba(16, 185, 129, 0.3);
+  }
+
+  :focus-visible {
+    outline: 2px solid theme("colors.accent.DEFAULT");
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .panel {
+    @apply rounded-xl border border-white/5 bg-base-850/80 shadow-panel backdrop-blur;
+  }
+
+  .panel-hover {
+    @apply transition-colors hover:border-white/10 hover:bg-base-800/80;
+  }
+
+  .label-caps {
+    @apply text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold
+      transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-base-950 hover:bg-accent-soft;
+  }
+
+  .btn-ghost {
+    @apply btn border border-white/10 bg-white/5 text-slate-200 hover:bg-white/10;
+  }
+
+  .btn-danger {
+    @apply btn border border-danger/40 bg-danger/10 text-rose-300 hover:bg-danger/20;
+  }
+
+  .input {
+    @apply w-full rounded-lg border border-white/10 bg-base-900 px-3.5 py-2.5 text-sm text-slate-100
+      placeholder:text-slate-500 focus:border-accent/60 focus:outline-none focus:ring-1 focus:ring-accent/50;
+  }
+
+  .mono {
+    @apply font-mono text-[13px];
+    word-break: break-all;
+  }
+}
