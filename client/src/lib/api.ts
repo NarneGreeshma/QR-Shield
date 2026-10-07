@@ -1,5 +1,5 @@
 import type { AnalysisResult, HistoryResponse, ScanListItem, StatsResponse, ScanSource } from "./types";
-
+const API_BASE = (import.meta.env.VITE_API_URL ?? "").replace(/\/$/, "");
 export class ApiError extends Error {
   constructor(public status: number, message: string) {
     super(message);
@@ -10,7 +10,7 @@ export class ApiError extends Error {
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   let res: Response;
   try {
-    res = await fetch(path, {
+    res = await fetch(`${API_BASE}${path}`, {
       headers: { "Content-Type": "application/json", ...(init?.headers ?? {}) },
       ...init,
     });
